@@ -4,13 +4,13 @@ project(test_xsens VERSION 0.1.0)
 include(CTest)
 enable_testing()
 set(THREADS_PREFER_PTHREAD_FLAG ON)
-include_directories(test_xsens PUBLIC ${PROJECT_SOURCE_DIR}/include)
+include_directories(test_xsens PUBLIC ${PROJECT_SOURCE_DIR}/include PUBLIC /usr/local/xsens/examples/mtsdk/xda_public_cpp/xspublic) 
 add_executable(test_xsens main.cpp src/xsensereciever.cpp )
 
 
 find_package(Threads REQUIRED
 xsens REQUIRED)
-target_link_libraries(test_xsens PUBLIC Threads::Threads xsens )
+target_link_libraries(test_xsens PUBLIC Threads::Threads PUBLIC /usr/local/xsens/examples/mtsdk/xda_public_cpp/xspublic/xscontroller/libxscontroller.a PUBLIC /usr/local/xsens/examples/mtsdk/xda_public_cpp/xspublic/xscommon/libxscommon.a PUBLIC /usr/local/xsens/examples/mtsdk/xda_public_cpp/xspublic/xstypes/libxstypes.a PUBLIC dl)
 #target_link_libraries(test_xsens PUBLIC xsens xscommon)
 
 
