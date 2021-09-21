@@ -37,7 +37,7 @@ private:
 
   size_t m_maxNumberOfPacketsInBuffer;
   size_t m_numberOfPacketsInBuffer;
-  std::list<XsDataPacket> m_packetBuffer;
+  std::queue<XsDataPacket> m_packetBuffer;
 };
 enum ResultCode { OK, NOT_OK };
 class XsensReciever {

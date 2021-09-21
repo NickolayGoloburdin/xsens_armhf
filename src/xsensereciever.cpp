@@ -11,7 +11,7 @@ XsDataPacket CallbackHandler::getNextPacket() {
   assert(packetAvailable());
   xsens::Lock locky(&m_mutex);
   XsDataPacket oldestPacket(m_packetBuffer.front());
-  m_packetBuffer.pop_front();
+  m_packetBuffer.pop();
   --m_numberOfPacketsInBuffer;
   return oldestPacket;
 }
@@ -23,7 +23,7 @@ void CallbackHandler::onLiveDataAvailable(XsDevice *,
   while (m_numberOfPacketsInBuffer >= m_maxNumberOfPacketsInBuffer)
     (void)getNextPacket();
 
-  m_packetBuffer.push_back(*packet);
+  m_packetBuffer.push(*packet);
   ++m_numberOfPacketsInBuffer;
   assert(m_numberOfPacketsInBuffer <= m_maxNumberOfPacketsInBuffer);
 }
