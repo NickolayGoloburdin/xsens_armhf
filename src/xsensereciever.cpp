@@ -95,8 +95,9 @@ ResultCode XsensReciever::recieve() {
       if (packet.containsOrientation()) {
 
         pack.eulers = packet.orientationEuler();
-        std::cout << pack.eulers.roll() << "   " << pack.eulers.pitch() << "   "
-                  << pack.eulers.yaw() << "\n";
+        // std::cout << pack.eulers.roll() << "   " << pack.eulers.pitch() << "
+        // "
+        //           << pack.eulers.yaw() << "\n";
       }
 
       // if (packet.containsLatitudeLongitude()) {
@@ -108,7 +109,7 @@ ResultCode XsensReciever::recieve() {
             static_cast<double>(packet.rawGnssPvtData().m_lat) / 10000000;
         pack.lon =
             static_cast<double>(packet.rawGnssPvtData().m_lon) / 10000000;
-        std::cout << pack.lat << "   " << pack.lon << "\n\n";
+        // std::cout << pack.lat << "   " << pack.lon << "\n\n";
       }
 
       dataqueue.push(pack);
